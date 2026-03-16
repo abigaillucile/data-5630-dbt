@@ -1,0 +1,124 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: Fact table containing Oliver sales transactions.
+    columns:
+      - name: date_key
+        description: Foreign key to the date dimension.
+      - name: product_key
+        description: Foreign key to the product dimension.
+      - name: store_key
+        description: Foreign key to the store dimension.
+      - name: cust_key
+        description: Foreign key to the customer dimension.
+      - name: employee_key
+        description: Foreign key to the employee dimension.
+      - name: quantity
+        description: Quantity sold.
+      - name: dollars_sold
+        description: Dollar amount of the sale.
+
+  - name: oliver_dim_customer
+    description: Customer dimension table for Oliver.
+    columns:
+      - name: cust_key
+        description: Primary key for the customer dimension.
+      - name: customerid
+        description: Business key for the customer.
+      - name: firstname
+        description: Customer first name.
+      - name: lastname
+        description: Customer last name.
+      - name: phonenumber
+        description: Customer phone number.
+      - name: email
+        description: Customer email address.
+      - name: state
+        description: Customer state.
+
+  - name: oliver_dim_date
+    description: Date dimension table for Oliver.
+    columns:
+      - name: date_key
+        description: Primary key for the date dimension.
+      - name: date_day
+        description: Calendar date.
+      - name: dayofweek
+        description: Day of the week.
+      - name: monthofyear
+        description: Month number of the year.
+      - name: month
+        description: Month name.
+      - name: quarter
+        description: Quarter of the year.
+      - name: year
+        description: Year number.
+
+  - name: oliver_dim_employee
+    description: Employee dimension table for Oliver.
+    columns:
+      - name: employee_key
+        description: Primary key for the employee dimension.
+      - name: employeeid
+        description: Business key for the employee.
+      - name: firstname
+        description: Employee first name.
+      - name: lastname
+        description: Employee last name.
+      - name: email
+        description: Employee email address.
+      - name: phone_number
+        description: Employee phone number.
+      - name: hire_date
+        description: Employee hire date.
+      - name: position
+        description: Employee job position.
+
+  - name: oliver_dim_product
+    description: Product dimension table for Oliver.
+    columns:
+      - name: product_key
+        description: Primary key for the product dimension.
+      - name: product_id
+        description: Business key for the product.
+      - name: product_name
+        description: Product name.
+      - name: description
+        description: Product description.
+
+  - name: oliver_dim_store
+    description: Store dimension table for Oliver.
+    columns:
+      - name: store_key
+        description: Primary key for the store dimension.
+      - name: store_id
+        description: Business key for the store.
+      - name: store_name
+        description: Store name.
+      - name: street
+        description: Store street address.
+      - name: city
+        description: Store city.
+      - name: state
+        description: Store state.
+
+  - name: sales
+    description: Reporting model joining fact sales with Oliver dimensions.
+    columns:
+      - name: date_day
+        description: Sale date.
+      - name: quarter
+        description: Quarter of the sale.
+      - name: store_id
+        description: Store identifier.
+      - name: store_name
+        description: Store name.
+      - name: product_name
+        description: Product name.
+      - name: employeeid
+        description: Employee identifier.
+      - name: quantity
+        description: Quantity sold.
+      - name: dollars_sold
+        description: Dollar amount sold.
