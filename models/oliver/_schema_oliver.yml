@@ -122,3 +122,29 @@ models:
         description: Quantity sold.
       - name: dollars_sold
         description: Dollar amount sold.
+  
+  - name: stg_employee_certifications
+    description: Staging model that extracts employee certification data from the Oliver source system and parses JSON fields into structured columns.
+    columns:
+      - name: employee_id
+        description: Business key identifying the employee who received the certification.
+      - name: certification_name
+        description: Name of the certification earned by the employee.
+      - name: certification_cost
+        description: Cost associated with obtaining the certification.
+      - name: certification_awarded_date
+        description: Date the certification was awarded to the employee.
+
+
+  - name: fact_certification
+    description: Fact table capturing employee certifications. The grain of this table is one record per employee certification awarded on a specific date.
+    columns:
+      - name: date_key
+        description: Foreign key referencing the date dimension for when the certification was awarded.
+      - name: employee_key
+        description: Foreign key referencing the employee dimension identifying the employee who received the certification.
+      - name: certification_name
+        description: Name of the certification received by the employee.
+      - name: certification_cost
+        description: Cost associated with the certification.
+        
