@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: ecoessential_landing
+    database: abigailford
+    schema: dw_ecoessentials_ecoessentials_transactional_db
+    tables:
+      - name: customer
+      - name: order
+      - name: order_line
+      - name: product
+      - name: promotional_campaign
