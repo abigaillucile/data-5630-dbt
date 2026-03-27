@@ -1,12 +1,12 @@
 {{ config(
     materialized = 'table',
-    schema = 'dw_ecoessentials_ecoessentials_transactional_db'
+    schema = 'dw_ecoessentials'
     )
 }}
 
-SELECT
+select
 {{ dbt_utils.generate_surrogate_key(['product_id', 'product_name']) }} as product_key,
 product_id, 
 product_type, 
 product_name
-FROM {{ source('ecoessentials_landing', 'product') }}
+from {{ source('ecoessentials_landing', 'product') }}
