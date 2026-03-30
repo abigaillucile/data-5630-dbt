@@ -80,10 +80,21 @@ models:
     columns:
       - name: product_key
         description: Primary key for the product dimension.
+        tests:
+          - unique
       - name: product_id
         description: Business key for the product.
       - name: product_name
         description: Product name.
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - "Marshmallows"
+                  - "Small Popcorn"
+                  - "Chocolate Bar"
+                  - "Gummy Bears"
+                  - "Small Coffee"
       - name: description
         description: Product description.
 
@@ -96,6 +107,8 @@ models:
         description: Business key for the store.
       - name: store_name
         description: Store name.
+        tests:
+          - not_null
       - name: street
         description: Store street address.
       - name: city
@@ -143,6 +156,11 @@ models:
         description: Foreign key referencing the date dimension for when the certification was awarded.
       - name: employee_key
         description: Foreign key referencing the employee dimension identifying the employee who received the certification.
+        tests:
+          - relationships:
+              arguments:
+                to: ref('oliver_dim_employee') # the model you want to compare to
+                field: employee_key # the field on the model you want to compare to
       - name: certification_name
         description: Name of the certification received by the employee.
       - name: certification_cost
